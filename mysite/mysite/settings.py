@@ -75,7 +75,7 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mysite',
+        'NAME': os.environ["DATABASE"],
         'USER': os.environ["DB_USER"],
         'PASSWORD': os.environ["DB_PASSWORD"],
         'HOST': 'localhost',
