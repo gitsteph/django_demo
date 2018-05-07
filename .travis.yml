@@ -6,8 +6,9 @@ services:
   - postgresql
 
 before_script:
-  - psql -c "CREATE DATABASE mysite;
-             ALTER ROLE <%= ENV['DB_USER'] %> SET client_encoding TO 'utf8';
-             ALTER ROLE <%= ENV['DB_USER'] %> SET default_transaction_isolation TO 'read committed';
-             ALTER ROLE <%= ENV['DB_USER'] %> SET timezone TO 'UTC';
-             GRANT ALL PRIVILEGES ON DATABASE mysite TO <%= ENV['DB_USER'] %>;" -U <%= ENV['DB_USER'] %>
+  - psql -c "CREATE DATABASE mysite;" -U <%= ENV['DB_USER'] %>
+  - psql -c "ALTER ROLE <%= ENV['DB_USER'] %> SET client_encoding TO 'utf8';" -U <%= ENV['DB_USER'] %>
+  - psql -c "ALTER ROLE <%= ENV['DB_USER'] %> SET default_transaction_isolation TO 'read committed';" -U <%= ENV['DB_USER'] %>
+  - psql -c "ALTER ROLE <%= ENV['DB_USER'] %> SET timezone TO 'UTC';" -U <%= ENV['DB_USER'] %>
+  - psql -c "GRANT ALL PRIVILEGES ON DATABASE mysite TO <%= ENV['DB_USER'] %>;" -U <%= ENV['DB_USER'] %>
+
