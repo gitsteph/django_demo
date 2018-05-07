@@ -1,0 +1,15 @@
+language: python
+script: python mysite/manage.py test polls
+python:
+  - "3.6.5"
+services:
+  - postgresql
+
+before_script:
+  - psql -c "CREATE USER $DB_USER WITH PASSWORD '$DB_PASSWORD';" -U postgres
+  - psql -c "ALTER USER $DB_USER CREATEDB;" -U postgres
+  - psql -c "CREATE DATABASE mysite;" -U $DB_USER template1
+  - psql -c "GRANT ALL PRIVILEGES ON DATABASE mysite TO $DB_USER;" -U $DB_USER mysite
+  - psql -c "ALTER ROLE $DB_USER SET client_encoding TO 'utf8';" -U $DB_USER mysite
+  - psql -c "ALTER ROLE $DB_USER SET default_transaction_isolation TO 'read committed';" -U $DB_USER mysite
+  - psql -c "ALTER ROLE $DB_USER SET timezone TO 'UTC';" -U $DB_USER mysite
