@@ -2,3 +2,12 @@ language: python
 script: python mysite/manage.py test polls
 python:
   - "3.6.5"
+services:
+  - postgresql
+
+before_script:
+  - psql -c "CREATE DATABASE mysite;
+             ALTER ROLE <%= ENV['DB_USER'] %> SET client_encoding TO 'utf8';
+             ALTER ROLE <%= ENV['DB_USER'] %> SET default_transaction_isolation TO 'read committed';
+             ALTER ROLE <%= ENV['DB_USER'] %> SET timezone TO 'UTC';
+             GRANT ALL PRIVILEGES ON DATABASE mysite TO <%= ENV['DB_USER'] %>;" -U <%= ENV['DB_USER'] %>
