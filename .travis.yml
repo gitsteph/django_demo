@@ -6,7 +6,8 @@ services:
   - postgresql
 
 before_script:
-  - psql -c "CREATE USER $DB_USER WITH PASSWORD $DB_PASSWORD;" -U postgres
+  - sudo
+  - psql -c "CREATE USER $DB_USER WITH PASSWORD '$DB_PASSWORD';" -U postgres
   - psql -c "CREATE DATABASE mysite;" -U $DB_USER
   - psql -c "ALTER ROLE $DB_USER SET client_encoding TO 'utf8';" -U $DB_USER
   - psql -c "ALTER ROLE $DB_USER SET default_transaction_isolation TO 'read committed';" -U $DB_USER
