@@ -1,1 +1,1 @@
-web: PYTHONPATH=$(pwd)/.. gunicorn --bind 0.0.0.0:8000 mysite.wsgi:application
+web: gunicorn --pythonpath application app.wsgi
