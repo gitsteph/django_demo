@@ -1,5 +1,7 @@
 language: python
-script: python mysite/manage.py test polls
+script:
+  - python mysite/manage.py collectstatic
+  - python mysite/manage.py test polls
 python:
   - "3.6.5"
 services:
