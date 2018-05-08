@@ -80,8 +80,8 @@ DATABASES = {
         'NAME': os.environ["DATABASE"],
         'USER': os.environ["DB_USER"],
         'PASSWORD': os.environ["DB_PASSWORD"],
-        'HOST': 'localhost',
-        'PORT': '',
+        'HOST': os.environ["DATABASE_HOST"],
+        'PORT': os.environ["PORT"],
     }
 }
 
